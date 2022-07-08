@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: php
+        tier: backend
+    spec:
+      volumes:
+      - name: code
+        emptyDir: {}
+      containers:
+      - name: php
+        image: php:7-fpm
+        volumeMounts:
+        - name: code
+          mountPath: /code
+      initContainers:
+      - name: install
+        image: alpine/git
+        volumeMounts:
+        - name: code
+          mountPath: /code
+        command:
+        - git 
+        - clone 
+        - git@gitlab.com:veroncheg1/test-php-app.git
+        - /code
