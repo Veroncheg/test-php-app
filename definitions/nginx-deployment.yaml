@@ -4,6 +4,7 @@ metadata:
   name: nginx
   labels:
     tier: backend
+  namespace: test-php-app
 spec:
   replicas: 1
   selector:
@@ -18,8 +19,7 @@ spec:
     spec:
       volumes:
       - name: code
-        persistentVolumeClaim:
-          claimName: code
+        emptyDir: {}
       - name: config
         configMap:
           name: nginx-config
@@ -36,3 +36,14 @@ spec:
           mountPath: /code
         - name: config
           mountPath: /etc/nginx/conf.d
+      initContainers:
+      - name: install
+        image: alpine/git
+        volumeMounts:
+        - name: code
+          mountPath: /code
+        command:
+        - git 
+        - clone 
+        - https://github.com/Veroncheg/test-php-app.git
+        - /code

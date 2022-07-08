@@ -4,6 +4,7 @@ metadata:
   name: php
   labels:
     tier: backend
+  namespace: test-php-app
 spec:
   replicas: 1
   selector:
@@ -31,8 +32,9 @@ spec:
         volumeMounts:
         - name: code
           mountPath: /code
-        command:
-        - git 
-        - clone 
-        - git@gitlab.com:veroncheg1/test-php-app.git
-        - /code
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - >-
+          - git clone https://github.com/Veroncheg/test-php-app.git
+          - cp -R ./php-app/* /code/

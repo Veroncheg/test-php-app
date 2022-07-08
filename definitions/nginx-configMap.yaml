@@ -4,6 +4,7 @@ metadata:
   name: nginx-config
   labels:
     tier: backend
+  namespace: test-php-app
 data:
   config : |
     server {

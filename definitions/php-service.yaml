@@ -4,6 +4,7 @@ metadata:
   name: php
   labels:
     tier: backend
+  namespace: test-php-app
 spec:
   selector:
     app: php

@@ -4,6 +4,7 @@ metadata:
   name: nginx
   labels:
     tier: backend
+  namespace: test-php-app
 spec:
   selector:
     app: nginx
