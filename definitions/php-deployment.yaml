@@ -36,5 +36,6 @@ spec:
         args:
           - -c
           - >-
-          - git clone https://github.com/Veroncheg/test-php-app.git
-          - cp -R ./php-app/* /code/
+              git clone https://github.com/Veroncheg/test-php-app.git &&
+              cd test-php-app/php-app &&
+              cp -R . /code/

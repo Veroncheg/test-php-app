@@ -42,8 +42,10 @@ spec:
         volumeMounts:
         - name: code
           mountPath: /code
-        command:
-        - git 
-        - clone 
-        - https://github.com/Veroncheg/test-php-app.git
-        - /code
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - >-
+              git clone https://github.com/Veroncheg/test-php-app.git &&
+              cd test-php-app/php-app &&
+              cp -R . /code/

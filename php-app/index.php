@@ -1,1 +1,1 @@
-<? print "Hello from".$_SERVER['HOSTNAME']." node!"  ?>
+<? print "Hello from ".$_SERVER['HOSTNAME']." node!"  ?>
